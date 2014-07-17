@@ -53,7 +53,7 @@ function(aRequest) {
     newElem = TP.xhtmlnode(
         '<h1 xmlns:tibet="' + TP.w3.Xmlns.TIBET + '" ' +
             'tibet:sourcetag="ghtest:app">' +
-            'Hello World!' +
+            'Hello STL-JS!' +
         '</h1>');
 
     newElem = TP.elementReplaceWith(elem, newElem);
