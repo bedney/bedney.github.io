@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<!--	=================================================================  -->
+<!--
+NAME:	sherpa_console_editor_stub.html
+AUTH:	William J. Edney (wje)
+NOTE:	Copyright (C) 1999-2009 Technical Pursuit Inc., All Rights
+		Reserved. Patent Pending, Technical Pursuit Inc.
+
+		Unless explicitly acquired and licensed under the Technical
+		Pursuit License ("TPL") Version 1.2, the contents of this file
+		are subject to the Reciprocal Public License ("RPL") Version 1.1
+		and You may not copy or use this file in either source code or
+		executable form, except in compliance with the terms and
+		conditions of the RPL.
+
+		You may obtain a copy of both the TPL and RPL (the "Licenses")
+		from Technical Pursuit Inc. at http://www.technicalpursuit.com.
+
+		All software distributed under the Licenses is provided strictly
+		on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND, EITHER
+		EXPRESS OR IMPLIED, AND TECHNICAL PURSUIT INC. HEREBY DISCLAIMS
+		ALL SUCH WARRANTIES, INCLUDING WITHOUT LIMITATION, ANY
+		WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+		QUIET ENJOYMENT, OR NON-INFRINGEMENT. See Licenses for specific
+		language governing rights and limitations under the Licenses.
+
+-->
+<!--	=================================================================  -->
+
+<!--
+-->
+
+<html>
+
+<head>
+<title></title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- Base CodeMirror JS and CSS -->
+<script type="text/javascript" src="../../../../../deps/codemirror/lib/codemirror.js"></script>
+<!--<script type="text/javascript" src="../../../../../deps/codemirror/lib/runmode.js"></script>-->
+<script type="text/javascript" src="../../../../../deps/codemirror/addon/search/searchcursor.js"></script>
+<script type="text/javascript" src="../../../../../deps/codemirror/addon/runmode/runmode.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../../../../../deps/codemirror/lib/codemirror.css">
+
+<!-- XML mode JS -->
+<script type="text/javascript" src="../../../../../deps/codemirror/mode/xml/xml.js"></script>
+
+<!-- JavaScript mode JS -->
+<script type="text/javascript" src="../../../../../deps/codemirror/mode/javascript/javascript.js"></script>
+
+<!-- CSS mode JS -->
+<script type="text/javascript" src="../../../../../deps/codemirror/mode/css/css.js"></script>
+
+<!-- Theme CSS -->
+<link rel="stylesheet" type="text/css" href="../cm_theme/solarized.css">
+<link rel="stylesheet" type="text/css" href="../cm_theme/sherpa_pp.css">
+
+<script type="text/javascript">
+function setup()
+{
+	window.cmEditor = CodeMirror.fromTextArea(
+		document.getElementById('cmEditor'),
+		{
+			theme: 'solarized dark',
+			mode: 'javascript',
+			tabMode: 'indent',
+			lineNumbers: true,
+            viewportMargin: Infinity,
+            electricChars: false,
+            extraKeys:
+            {
+                //  NB: These should match keys that are used by the console in
+                //  TP.sherpa.ConsoleService
+                'Shift-Enter': function() {return true},
+
+                'Shift-Up': function() {return true},
+                'Shift-Right': function() {return true},
+                'Shift-Down': function() {return true},
+                'Shift-Left': function() {return true},
+
+                'Shift-Alt-Up': function() {return true},
+                'Shift-Alt-Right': function() {return true},
+                'Shift-Alt-Down': function() {return true},
+                'Shift-Alt-Left': function() {return true},
+
+                'Shift-Backspace': function() {return true},
+
+                'Shift-Esc': function() {return true},
+
+                'Ctrl-Enter': function() {return true}
+            }
+		});
+
+	window.frameElement.frameLoad();
+};
+</script>
+
+<style type="text/css">
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+.CodeMirror {
+    height: auto;
+}
+.CodeMirror-scroll {
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.CodeMirror[maximized] {
+    height: 100%;
+}
+.CodeMirror[maximized] .CodeMirror-scroll {
+	overflow-y: auto;
+}
+
+.console_prompt {
+    display: inline-block;
+
+    cursor: default;
+
+    margin-right: 2px;
+
+    font-family: monospace;
+    color: rgb(188, 190, 143);
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.output {
+    display: inline-flex;
+
+    cursor: default;
+
+    margin-left: 5px;
+    margin-right: 5px;
+
+    padding: 3px;
+
+    font-family: monospace;
+    background: rgba(255, 255, 255, 0.10);
+    color: rgb(188, 190, 143);
+
+    border: dotted 1px rgb(188, 190, 143);
+    border-radius: 3px;
+
+    font-size: 13px;
+}
+
+.ERROR {
+    color: #E25365;
+    border-color: #E25365;
+}
+.bordered-input {
+    border-top: dashed 1px #2AA198;
+    border-bottom: dashed 1px #2AA198;
+}
+
+.bordered-input-left {
+    border-left: dashed 1px #2AA198;
+}
+
+.bordered-input-right {
+    border-right: dashed 1px #2AA198;
+}
+
+.bordered-eval {
+    border-top: dashed 1px #D33682;
+    border-bottom: dashed 1px #D33682;
+}
+
+.bordered-eval-left {
+    border-left: dashed 1px #D33682;
+}
+
+.bordered-eval-right {
+    border-right: dashed 1px #D33682;
+}
+
+.output[draggable] {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+    user-select: none;
+}
+
+.output-drag-element {
+    position: absolute;
+
+    left: 0px;
+    top: 0px;
+
+    margin-left: 5px;
+    margin-right: 5px;
+
+    padding: 3px;
+
+    font-family: monospace;
+    background: rgb(25, 63, 72);
+    color: rgb(188, 190, 143);
+
+    border: solid 1px rgb(188, 190, 143);
+    border-radius: 3px;
+
+    font-size: 13px;
+
+    z-index: -5000;
+}
+
+</style>
+
+</head>
+
+<body onload="setup()">
+	<textarea id="cmEditor"></textarea>
+</body>
+</html>

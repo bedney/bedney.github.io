@@ -1,0 +1,15 @@
+{
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "globals": {
+        "TP": true,
+        "APP": true
+    },
+    "rules": {
+        "consistent-return": 0,
+        "quotes": [1, "single"],
+        "strict": 0
+    }
+}

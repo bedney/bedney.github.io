@@ -1,0 +1,7 @@
+{
+    "//" : "TIBET project file. Set configuration parameters here.",
+
+    "tibet": {
+        "dna": "/usr/local/src/TPI/TIBET5/dna/ghpages"
+    }
+}
